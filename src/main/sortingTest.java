@@ -6,22 +6,7 @@ import jsjf.CircularArrayQueue;
 
 public class sortingTest {
 
-    public static int length;
-
-    public static int random() {
-        Random r = new Random();
-        int randomNum = r.nextInt();
-        return randomNum;
-    }
-
-    public static int[] fillArray(int length) {
-        int array[] = new int[length];
-        for(int i=0; i<array.length; i++)
-        {
-            array[i] = random();
-        }
-        return array;
-    }
+    public static int n;
 
     public static void insertionSort(int A[]) {
 
@@ -29,8 +14,6 @@ public class sortingTest {
 
         int n = A.length;
         int key;
-
-        int randomArray[] = fillArray(length);
 
         for (int i = 1; i < n; i++) {
             // A er sortert t.o.m. indeks i-1
@@ -186,11 +169,12 @@ public class sortingTest {
 
     public static void main(String[] args) {
 
+        long time = 0;
         // Henter input fra bruker
         Scanner in = new Scanner(System.in);
         System.out.println("Skriv inn antall tall som skal sorteres: ");
-        length = in.nextInt();
-        int A[] = new int[length];
+        n = in.nextInt();
+        int A[] = new int[n];
 
         System.out.println("Hvilken sorteringsmetode ønskes? ");
         System.out.println("1. Insertion sort");
@@ -199,21 +183,30 @@ public class sortingTest {
         System.out.println("4. Radixsort");
         int choosenMethod = in.nextInt();
 
+        Random r = new Random();
+        int randomNum = r.nextInt();
+
+        for(int i=0; i<A.length; i++)
+        {
+            A[i] = randomNum;
+        }
+
         if(choosenMethod == 1)
         {
+
             insertionSort(A);
         }
         else if(choosenMethod == 2)
         {
-            quickSort(A,);
+            quickSort(A, 0, n-1);
         }
         else if(choosenMethod == 3)
         {
-            mergeSort();
+            mergeSort(A, 0, n-1);
         }
         else if(choosenMethod == 4)
         {
-            radixSort();
+            radixSort(A, 2 );
         }
         else
         {
