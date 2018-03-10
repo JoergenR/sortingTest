@@ -201,25 +201,34 @@ public class sortingTest {
                 time = System.currentTimeMillis();
                 insertionSort(A);
                 time = System.currentTimeMillis() - time;
-                System.out.println("Insertion sort. \t n: " + n + "  \tt: " + time + " ms "
-                        + "\tt/n^2: " + (float) time / ((float) n * n));
+                System.out.println("Insertion sort. \t n: " + n + "  \tt: " + time + " ms");
             }
             else if (choosenTest == 2)
             {
                 insertionSort(A);
+                System.out.println("Insertion sort " + "\\tt/n^2: " + (float) time / ((float) n * n));
             }
         }
         else if(choosenMethod == 2)
         {
+            time = System.currentTimeMillis();
             quickSort(A, 0, n-1);
+            time = System.currentTimeMillis() - time;
+            System.out.println("Quicksort " + "\t n: " + n + " \tt: " + time + " ms");
         }
         else if(choosenMethod == 3)
         {
+            time = System.currentTimeMillis();
             mergeSort(A, 0, n-1);
+            time = System.currentTimeMillis() - time;
+            System.out.println("Merge sort " + "\t n: " + n + "\tt: " + time + " ms");
         }
         else if(choosenMethod == 4)
         {
+            time = System.currentTimeMillis();
             radixSort(A, 2 );
+            time = System.currentTimeMillis() - time;
+            System.out.println("Radixsort " + "\t n: " + n + "\tt: " + time + " ms");
         }
         else
         {
