@@ -172,7 +172,7 @@ public class sortingTest {
         long time = 0;
         // Henter input fra bruker
         Scanner in = new Scanner(System.in);
-        System.out.println("Skriv inn antall tall som skal sorteres: ");
+        System.out.print("Skriv inn antall tall som skal sorteres: ");
         n = in.nextInt();
         int A[] = new int[n];
 
@@ -184,7 +184,7 @@ public class sortingTest {
         int choosenMethod = in.nextInt();
 
         System.out.println("Hvordan test skal gjøres?");
-        System.out.print("Trykk 1 for tid, 2 for å beregne arbeidsmengden til den valgte sorteringsmetoden");
+        System.out.print("Trykk 1 for tid, 2 for å beregne arbeidsmengden til den valgte sorteringsmetoden ");
         int choosenTest = in.nextInt();
 
         Random r = new Random();
@@ -211,24 +211,30 @@ public class sortingTest {
         }
         else if(choosenMethod == 2)
         {
-            time = System.currentTimeMillis();
-            quickSort(A, 0, n-1);
-            time = System.currentTimeMillis() - time;
-            System.out.println("Quicksort " + "\t n: " + n + " \tt: " + time + " ms");
+            if(choosenTest == 1) {
+                time = System.currentTimeMillis();
+                quickSort(A, 0, n - 1);
+                time = System.currentTimeMillis() - time;
+                System.out.println("Quicksort " + "\t n: " + n + " \tt: " + time + " ms");
+            }
         }
         else if(choosenMethod == 3)
         {
-            time = System.currentTimeMillis();
-            mergeSort(A, 0, n-1);
-            time = System.currentTimeMillis() - time;
-            System.out.println("Merge sort " + "\t n: " + n + "\tt: " + time + " ms");
+            if(choosenTest == 1) {
+                time = System.currentTimeMillis();
+                mergeSort(A, 0, n - 1);
+                time = System.currentTimeMillis() - time;
+                System.out.println("Merge sort " + "\t n: " + n + "\tt: " + time + " ms");
+            }
         }
         else if(choosenMethod == 4)
         {
-            time = System.currentTimeMillis();
-            radixSort(A, 2 );
-            time = System.currentTimeMillis() - time;
-            System.out.println("Radixsort " + "\t n: " + n + "\tt: " + time + " ms");
+            if(choosenTest == 1) {
+                time = System.currentTimeMillis();
+                radixSort(A, 2);
+                time = System.currentTimeMillis() - time;
+                System.out.println("Radixsort " + "\t n: " + n + "\tt: " + time + " ms");
+            }
         }
         else
         {
