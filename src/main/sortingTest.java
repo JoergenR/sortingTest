@@ -183,6 +183,10 @@ public class sortingTest {
         System.out.println("4. Radixsort");
         int choosenMethod = in.nextInt();
 
+        System.out.println("Hvordan test skal gjøres?");
+        System.out.print("Trykk 1 for tid, 2 for å beregne arbeidsmengden til den valgte sorteringsmetoden");
+        int choosenTest = in.nextInt();
+
         Random r = new Random();
         int randomNum = r.nextInt();
 
@@ -193,8 +197,17 @@ public class sortingTest {
 
         if(choosenMethod == 1)
         {
-
-            insertionSort(A);
+            if (choosenTest == 1) {
+                time = System.currentTimeMillis();
+                insertionSort(A);
+                time = System.currentTimeMillis() - time;
+                System.out.println("Insertion sort. \t n: " + n + "  \tt: " + time + " ms "
+                        + "\tt/n^2: " + (float) time / ((float) n * n));
+            }
+            else if (choosenTest == 2)
+            {
+                insertionSort(A);
+            }
         }
         else if(choosenMethod == 2)
         {
