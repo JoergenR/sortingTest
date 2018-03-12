@@ -169,78 +169,79 @@ public class sortingTest {
 
     public static void main(String[] args) {
 
-        long time = 0;
+        long time;
         // Henter input fra bruker
         Scanner in = new Scanner(System.in);
-        System.out.print("Skriv inn antall tall som skal sorteres: ");
-        n = in.nextInt();
-        int A[] = new int[n];
+        while (true) {
+            System.out.print("Skriv inn antall tall som skal sorteres: ");
+            n = Integer.parseInt(in.nextLine());
+            int A[] = new int[n];
 
-        System.out.println("Hvilken sorteringsmetode ønskes? ");
-        System.out.println("1. Insertion sort");
-        System.out.println("2. Quicksort");
-        System.out.println("3. Merge sort");
-        System.out.println("4. Radixsort");
-        int choosenMethod = in.nextInt();
+            System.out.println("Hvilken sorteringsmetode ønskes? ");
+            System.out.println("1. Insertion sort");
+            System.out.println("2. Quicksort");
+            System.out.println("3. Merge sort");
+            System.out.println("4. Radixsort");
+            int choosenMethod = Integer.parseInt(in.nextLine());
 
-        System.out.println("Hvordan test skal gjøres?");
-        System.out.print("Trykk 1 for tid, 2 for å beregne arbeidsmengden til den valgte sorteringsmetoden ");
-        int choosenTest = in.nextInt();
+            System.out.println("Hvordan test skal gjøres?");
+            System.out.print("Trykk 1 for tid, 2 for å beregne arbeidsmengden til den valgte sorteringsmetoden ");
+            int choosenTest = Integer.parseInt(in.nextLine());
 
-        Random r = new Random();
-        int randomNum = r.nextInt();
+            Random r = new Random();
 
-        for(int i=0; i<A.length; i++)
-        {
-            A[i] = randomNum;
-        }
+            for (int i = 0; i < n; i++) {
+                A[i] = r.nextInt(n);  //randomNum;
+            }
 
-        if(choosenMethod == 1)
-        {
-            if (choosenTest == 1) {
+            if (choosenMethod == 1) {
                 time = System.currentTimeMillis();
                 insertionSort(A);
                 time = System.currentTimeMillis() - time;
-                System.out.println("Insertion sort. \t n: " + n + "  \tt: " + time + " ms");
-            }
-            else if (choosenTest == 2)
-            {
-                insertionSort(A);
-                System.out.println("Insertion sort " + "\\tt/n^2: " + (float) time / ((float) n * n));
-            }
-        }
-        else if(choosenMethod == 2)
-        {
-            if(choosenTest == 1) {
+                if (choosenTest == 1) {
+
+                    System.out.println("Insertion sort. \t n: " + n + "  \tt: " + time + " ms");
+                } else if (choosenTest == 2) {
+                    System.out.println("Insertion sort " + "\tt/n^2: " + (float) time / (n * n));
+                }
+            } else if (choosenMethod == 2) {
                 time = System.currentTimeMillis();
                 quickSort(A, 0, n - 1);
                 time = System.currentTimeMillis() - time;
-                System.out.println("Quicksort " + "\t n: " + n + " \tt: " + time + " ms");
-            }
-        }
-        else if(choosenMethod == 3)
-        {
-            if(choosenTest == 1) {
+                if (choosenTest == 1) {
+
+                    System.out.println("Quicksort " + "\t n: " + n + " \tt: " + time + " ms");
+                } else if (choosenTest == 2) {
+                    System.out.println("Quicksort " + "\t " + (float) (time / (n * (Math.log(n) / Math.log(2)))));
+                }
+            } else if (choosenMethod == 3) {
                 time = System.currentTimeMillis();
                 mergeSort(A, 0, n - 1);
                 time = System.currentTimeMillis() - time;
-                System.out.println("Merge sort " + "\t n: " + n + "\tt: " + time + " ms");
-            }
-        }
-        else if(choosenMethod == 4)
-        {
-            if(choosenTest == 1) {
+                if (choosenTest == 1) {
+
+                    System.out.println("Merge sort: " + "\t n: " + n + "\tt: " + time + " ms");
+                } else if (choosenTest == 2) {
+                    System.out.println("Mergesort: " + "\t " + (float) (time / (n * (Math.log(n) / Math.log(2)))));
+                }
+            } else if (choosenMethod == 4) {
                 time = System.currentTimeMillis();
-                radixSort(A, 2);
+                radixSort(A, (int) (Math.log10(n) + 1));
                 time = System.currentTimeMillis() - time;
-                System.out.println("Radixsort " + "\t n: " + n + "\tt: " + time + " ms");
+                if (choosenTest == 1) {
+
+                    System.out.println("Radixsort " + "\t n: " + n + "\tt: " + time + " ms");
+                } else if (choosenTest == 2) {
+                    System.out.println("Radixsort: " + "\t" + (float) (time / n));
+                }
+            } else {
+                System.out.println("Vennligst spesifiser metode 1, 2, 3 eller 4");
             }
-        }
-        else
-        {
-            System.out.println("Vennligst spesifiser metode 1, 2, 3 eller 4");
-        }
 
+            System.out.print("Trykk q for å avslutte eller en annen knapp for å restarte: ");
+            String option = in.nextLine();
+            if (option.equals("q"))
+                break;
+        }
     }
-
 }
