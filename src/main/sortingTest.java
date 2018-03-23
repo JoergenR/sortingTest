@@ -238,7 +238,7 @@ public class sortingTest {
                 System.out.println("Vennligst spesifiser metode 1, 2, 3 eller 4");
             }
 
-            System.out.print("Trykk q for å avslutte eller en annen knapp for å restarte: ");
+            System.out.print("Trykk q for å avslutte eller en annen knapp for å restarte programmet: ");
             String option = in.nextLine();
             if (option.equals("q"))
                 break;
